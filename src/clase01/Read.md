@@ -31,7 +31,7 @@ __El sistema debe informar:__
     prop nombre
     prop Lista<Avion> aviones
     prop Lista<Vuelo> vuelos
-    cantidadPasajeros(Mes mes)
+    cantidadPasajeros(Mes mes): int
     ```
 - Aeropuerto
     ```
@@ -39,15 +39,15 @@ __El sistema debe informar:__
     prop Ciudad ciudad
     prop Lista<Vuelo> arribos
     prop Lista<Vuelo> despegues
-    cantidadArribos(Fecha fecha)
-    cantidadDespegues(Fecha fecha)
+    cantidadArribos(Fecha fecha): int
+    cantidadDespegues(Fecha fecha): int
     ```
 - Avion 
     ```
     prop codigo
     prop Lista<Asiento> asientos
     prop Aerolinea aerolinea
-    cantidadAsientos()
+    cantidadAsientos(): int
     ```
 - Asiento
     ```
@@ -66,8 +66,8 @@ __El sistema debe informar:__
     prop Lista<<Aeropuerto, Duracion>> escalas
     prop FechaYHora fecha  
     prop duracion
-    calcularDuracion()
-    calcularOcupacion()
+    calcularDuracion(): int
+    calcularOcupacion(): int
     ```
 - Ciudad
     ```
@@ -76,14 +76,14 @@ __El sistema debe informar:__
     prop Lista<Aeropuertos> aeropuertos
     prop Lista<Pasajeros> pasajeros
     prop Lista<Vuelo> vuelos
-    cantidadAeropuertos()
-    cantidadPasajeros()
+    cantidadAeropuertos(): int
+    cantidadPasajeros(): int
     ```
 - Tripulacion
     ```
     prop Lista<Tripulante> tripulantes
     prop Lista<Vuelos> vuelos
-    cantidadVuelos(Fecha desde, Fecha hasta)
+    cantidadVuelos(meses: int): int
     ```
 - Persona
     ```
@@ -101,8 +101,8 @@ __El sistema debe informar:__
     - Pasajero ___HEREDA DE___ Persona
         ```
         prop Lista<Vuelo> vuelos (!)
-        prop Lista<<Ciudad, visitas>> ciudades_visitadas
-        cantidadVuelos()
-        agregarVisita(Ciudad ciudad)
-        visitasCiudad(Ciudad ciudad)
+        prop <Ciudad, visitas: int> ciudades_visitadas
+        cantidadVuelos(): int
+        agregarVisita(Ciudad ciudad): void
+        visitasCiudad(Ciudad ciudad): int
         ```
