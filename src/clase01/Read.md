@@ -67,7 +67,7 @@ __El sistema debe informar:__
     prop FechaYHora fecha  
     prop duracion
     calcularDuracion(): int
-    calcularOcupacion(): int
+    calcularOcupacion(): float
     ```
 - Ciudad
     ```
@@ -85,7 +85,7 @@ __El sistema debe informar:__
     prop Lista<Vuelos> vuelos
     cantidadVuelos(meses: int): int
     ```
-- Persona
+- Persona __ABSTRACTA__
     ```
     prop nombre
     prop apellido
