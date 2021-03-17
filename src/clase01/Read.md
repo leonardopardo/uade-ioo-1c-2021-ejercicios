@@ -11,26 +11,27 @@ comisarios de abordo y 4 azafatas. Cada pasajero de un vuelo tiene asignado un a
 ## Requerimientos
 __El sistema debe informar:__
 
-1. La capacidad de un vuelo ocupada por pasajeros.
-2. La duración total aproximada de un vuelo, teniendo en cuenta que, de existir, en cada escala se demora un tiempo diferente.
-3. La cantidad de vuelos que partieron de un aeropuerto, así como también la cantidad de vuelos que a él llegaron, en un día determinado.
-4. El aeropuerto que recibió menos vuelos en escalas.
-5. La cantidad de vuelos totales que realizó un pasajero.
-6. La cantidad de aeropuertos que tiene una ciudad.
-7. La ciudad que más pasajeros recibió en un día.
-8. La cantidad de veces que un pasajero visitó una ciudad.
-9. La cantidad de vuelos que realizó una tripulación en un periodo de tiempo determinado (en meses).
-10. La aerolínea con mayor cantidad de pasajeros en un mes determinado.
+01. __OK!__ La capacidad de un vuelo ocupada por pasajeros.
+02. __OK!__ La duración total aproximada de un vuelo, teniendo en cuenta que, de existir, en cada escala se demora un tiempo diferente.
+03. __OK!__ La cantidad de vuelos que partieron de un aeropuerto, así como también la cantidad de vuelos que a él llegaron, en un día determinado.
+04. El aeropuerto que recibió menos vuelos en escalas.
+05. __OK!__ La cantidad de vuelos totales que realizó un pasajero.
+06. __OK!__ La cantidad de aeropuertos que tiene una ciudad.
+07. __OK!__ La ciudad que más pasajeros recibió en un día.
+08. __OK!__ La cantidad de veces que un pasajero visitó una ciudad.
+09. __OK!__ La cantidad de vuelos que realizó una tripulación en un periodo de tiempo determinado (en meses).
+10. __OK!__ La aerolínea con mayor cantidad de pasajeros en un mes determinado.
 
 ## Resolución
-
-__Simbolos__
 
 ### Identificar entidades principales o candidatas.
 
 - Aerolinea
     ```
     prop nombre
+    prop Lista<Avion> aviones
+    prop Lista<Vuelo> vuelos
+    cantidadPasajeros(Mes mes)
     ```
 - Aeropuerto
     ```
@@ -38,8 +39,8 @@ __Simbolos__
     prop Ciudad ciudad
     prop Lista<Vuelo> arribos
     prop Lista<Vuelo> despegues
-    cantidadArribos()
-    cantidadDespegues()
+    cantidadArribos(Fecha fecha)
+    cantidadDespegues(Fecha fecha)
     ```
 - Avion 
     ```
@@ -61,7 +62,7 @@ __Simbolos__
     prop Aeropuerto origen
     prop Aeropuerto destino
     prop Lista<Pasajeros> pasajeros
-    prop Lista<Tripulantes> tripulantes
+    prop Tripulacion tripulacion
     prop Lista<<Aeropuerto, Duracion>> escalas
     prop FechaYHora fecha  
     prop duracion
@@ -71,23 +72,37 @@ __Simbolos__
 - Ciudad
     ```
     prop nombre
-    prop Pais pais
+    prop pais
     prop Lista<Aeropuertos> aeropuertos
+    prop Lista<Pasajeros> pasajeros
+    prop Lista<Vuelo> vuelos
+    cantidadAeropuertos()
+    cantidadPasajeros()
+    ```
+- Tripulacion
+    ```
+    prop Lista<Tripulante> tripulantes
+    prop Lista<Vuelos> vuelos
+    cantidadVuelos(Fecha desde, Fecha hasta)
     ```
 - Persona
     ```
     prop nombre
     prop apellido
     prop documento
-    prop tipo_documento
+    prop <DOCUMENTO | PASAPORTE | OTRO> tipo_documento
     prop fecha_nacimiento
     ```
     - Tripulante ___HEREDA DE___ Persona
         ```
         prop <PILOTO | OPERADOR | COMISARIO_ABORDO | AZAFATA> TipoTripulante  
-        prop Lista<Vuelo> vuelos
+        prop Lista<Vuelo> vuelos (!)
         ```
     - Pasajero ___HEREDA DE___ Persona
         ```
-        prop Lista<Vuelo> vuelos
+        prop Lista<Vuelo> vuelos (!)
+        prop Lista<<Ciudad, visitas>> ciudades_visitadas
+        cantidadVuelos()
+        agregarVisita(Ciudad ciudad)
+        visitasCiudad(Ciudad ciudad)
         ```
