@@ -22,14 +22,72 @@ __El sistema debe informar:__
 9. La cantidad de vuelos que realizó una tripulación en un periodo de tiempo determinado (en meses).
 10. La aerolínea con mayor cantidad de pasajeros en un mes determinado.
 
-## Secuencia
-- Identificar entidades principales o candidatas.
-    - Aerolinea
-    - Aeropuerto
-    - Avion
-    - Asiento
-    - Vuelo
-    - Ciudad
-    - Persona
-        - Tripulante => Piloto, Operador, Comisario de Abordo, Azafata
-        - Pasajero
+## Resolución
+
+__Simbolos__
+
+### Identificar entidades principales o candidatas.
+
+- Aerolinea
+    ```
+    prop nombre
+    ```
+- Aeropuerto
+    ```
+    prop nombre
+    prop Ciudad ciudad
+    prop Lista<Vuelo> arribos
+    prop Lista<Vuelo> despegues
+    cantidadArribos()
+    cantidadDespegues()
+    ```
+- Avion 
+    ```
+    prop codigo
+    prop Lista<Asiento> asientos
+    prop Aerolinea aerolinea
+    cantidadAsientos()
+    ```
+- Asiento
+    ```
+    prop numero
+    prop <TURISTA | PRIMERA_CLASE> ClaseAsiento
+    prop <PASILLO | VENTANA> UbicacionAsiento
+    prop Avion avion
+    ```
+- Vuelo
+    ```
+    prop Avion
+    prop Aeropuerto origen
+    prop Aeropuerto destino
+    prop Lista<Pasajeros> pasajeros
+    prop Lista<Tripulantes> tripulantes
+    prop Lista<<Aeropuerto, Duracion>> escalas
+    prop FechaYHora fecha  
+    prop duracion
+    calcularDuracion()
+    calcularOcupacion()
+    ```
+- Ciudad
+    ```
+    prop nombre
+    prop Pais pais
+    prop Lista<Aeropuertos> aeropuertos
+    ```
+- Persona
+    ```
+    prop nombre
+    prop apellido
+    prop documento
+    prop tipo_documento
+    prop fecha_nacimiento
+    ```
+    - Tripulante ___HEREDA DE___ Persona
+        ```
+        prop <PILOTO | OPERADOR | COMISARIO_ABORDO | AZAFATA> TipoTripulante  
+        prop Lista<Vuelo> vuelos
+        ```
+    - Pasajero ___HEREDA DE___ Persona
+        ```
+        prop Lista<Vuelo> vuelos
+        ```
